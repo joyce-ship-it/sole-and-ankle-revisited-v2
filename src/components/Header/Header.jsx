@@ -35,7 +35,7 @@ const Header = () => {
         <TabletNav>
           <LuShoppingBag size={24} />
           <CiSearch size={24} strokeWidth={1.4} />
-          <GiHamburgerMenu size={24} />
+          <GiHamburgerMenu size={24} onClick={() => setShowMobileMenu(true)} />
         </TabletNav>
         <Side />
       </MainHeader>
@@ -64,7 +64,8 @@ const MainHeader = styled.div`
 
 const DesktopNav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(1rem, -4.4286rem + 9.1429vw, 3rem);
+  overflow-x: auto;
   margin: 0px 48px;
   @media ${QUERIES.tablet} {
     display: none;
