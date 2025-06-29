@@ -1,20 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import { QUERIES, WEIGHTS } from "../../constants";
+import { BREAKPOINTS, QUERIES, WEIGHTS } from "../../constants";
 
 import Breadcrumbs from "../Breadcrumbs";
 import Select from "../Select";
 import Spacer from "../Spacer";
 import ShoeSidebar from "../ShoeSidebar";
 import ShoeGrid from "../ShoeGrid";
+import MobileBreadCrumbs from "../Breadcrumbs";
 
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
         <Header>
-          <Title>Running</Title>
+          <TabletTitle>Running</TabletTitle>
+          <DesktopTitle>Running</DesktopTitle>
+
           <Select
             label="Sort"
             value={sortId}
@@ -25,6 +28,10 @@ const ShoeIndex = ({ sortId, setSortId }) => {
           </Select>
         </Header>
         <Spacer size={32} />
+        <MobileTitle>Running</MobileTitle>
+        <MobileBreadCrumbs>
+          <MobileBreadCrumbs.Crumb href="/">Home</MobileBreadCrumbs.Crumb>
+        </MobileBreadCrumbs>
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
@@ -64,9 +71,31 @@ const Header = styled.header`
   align-items: baseline;
 `;
 
-const Title = styled.h2`
+const DesktopTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
+  @media ${QUERIES.tablet} {
+    display: none;
+  }
+`;
+
+const TabletTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: ${WEIGHTS.medium};
+  @media (min-width: ${BREAKPOINTS.tablet}px) {
+    display: none;
+  }
+  @media ${QUERIES.phones} {
+    display: none;
+  }
+`;
+
+const MobileTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: ${WEIGHTS.medium};
+  @media (min-width: ${BREAKPOINTS.phone}px) {
+    display: none;
+  }
 `;
 
 export default ShoeIndex;

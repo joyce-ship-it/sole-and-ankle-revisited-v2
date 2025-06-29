@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { COLORS, QUERIES } from "../../constants";
+import { BREAKPOINTS, COLORS, QUERIES } from "../../constants";
 
-const Breadcrumbs = ({ children }) => {
+const MobileBreadcrumbs = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-Breadcrumbs.Crumb = ({ href, children, delegated }) => {
+MobileBreadcrumbs.Crumb = ({ href, children, delegated }) => {
   return (
     <CrumbWrapper>
       <CrumbLink href={href} {...delegated}>
@@ -27,7 +27,7 @@ const CrumbWrapper = styled.div`
     }
   }
 
-  @media ${QUERIES.phones} {
+  @media (min-width: ${BREAKPOINTS.tablet}px) {
     display: none;
   }
 `;
