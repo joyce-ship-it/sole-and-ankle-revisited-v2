@@ -1,10 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { BREAKPOINTS, COLORS, QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import { LuShoppingBag } from "react-icons/lu";
+import { CiSearch } from "react-icons/ci";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -21,14 +24,19 @@ const Header = () => {
         <Side>
           <Logo />
         </Side>
-        <Nav>
+        <DesktopNav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
-        </Nav>
+        </DesktopNav>
+        <TabletNav>
+          <LuShoppingBag size={24} />
+          <CiSearch size={24} strokeWidth={1.4} />
+          <GiHamburgerMenu size={24} />
+        </TabletNav>
         <Side />
       </MainHeader>
 
@@ -46,12 +54,33 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  @media ${QUERIES.tablet} {
+    padding: 24px 30px;
+    & > div:last-of-type {
+      display: none;
+    }
+  }
 `;
 
-const Nav = styled.nav`
+const DesktopNav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+  @media ${QUERIES.tablet} {
+    display: none;
+  }
+`;
+
+const TabletNav = styled.nav`
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+  @media (min-width: ${BREAKPOINTS.tablet}px) {
+    display: none;
+  }
+  @media (max-width: ${BREAKPOINTS.phone}px) {
+    gap: 16px;
+  }
 `;
 
 const Side = styled.div`
